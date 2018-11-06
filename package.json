@@ -9,6 +9,11 @@
   "author": "Ping",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.9"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
   }
 }
