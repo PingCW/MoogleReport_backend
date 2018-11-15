@@ -39,10 +39,12 @@ passport.use(new LocalStrategy({
     }
 ));
 
+// Signup
 app.post('/signup', function(req,res,next){
     let temp=new User(req.body);
     //find password and replace it with hash generate from bcrypt
     temp.save(function(err){
+        // if not unique email, send error
         if (err) {
             console.log('Failed to create user');
             res.status(400).end();
@@ -53,10 +55,23 @@ app.post('/signup', function(req,res,next){
 
 });
 
+// Login
 app.post('/login',passport.authenticate('local',{session:false}),(req,res,next)=>{
     //generate JWT and send it back
     res.send(200).end();
 });
+
+// Post message
+/* app.post(
+    
+); */
+
+// Get message
+/* app.get(
+);
+ */
+
+// clear database, we can delete this later
 app.get('/clearDB',()=>{
     User.remove({}, function(err) { 
         console.log('collection removed') 
@@ -66,22 +81,6 @@ app.get('/clearDB',()=>{
      });
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // // initialize routes 
 // app.use(routes);
@@ -95,6 +94,5 @@ app.get('/clearDB',()=>{
 //listen for requests
 app.listen(process.env.port||3000, function(){
     console.log('now listening for requests');
-
 });
 
