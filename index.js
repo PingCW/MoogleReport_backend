@@ -23,13 +23,13 @@ passport.use(new LocalStrategy({
 },
     function(username,password,done){
         User.findOne({username:username}, function(err, user){
-            if(err){return done(null,false);}
+            if (err) {return done(null,false);}
 
-            if(!user){
+            if (!user) {
                 return done(null,false,{message:'Incorrect username.'});
             }
 
-            //Bbcryopt
+            //bcrypt
             if(!(user.password===password)){
                 return done(null, false,{message:'Incorrect password.'});
             }
@@ -43,10 +43,10 @@ app.post('/signup', function(req,res,next){
     let temp=new User(req.body);
     //find password and replace it with hash generate from bcrypt
     temp.save(function(err){
-        if(err){
+        if (err) {
             console.log('Failed to create user');
             res.status(400).end();
-        }else{
+        } else {
             res.status(201).end();
         }
     });
