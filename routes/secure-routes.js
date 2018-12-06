@@ -9,6 +9,7 @@ router.post('/message',(req,res)=>{
     let message0=req.body.message;
     let isRead0=false;
 
+    //Error handling if user type empty or space to receiver and sender
     if(to!=undefined &&!!to.trim() && from!=undefined &&!!from.trim()){
         const data = {
             sender:from,
